@@ -1,0 +1,48 @@
+<!-- Clase: User, Ruta: user --> 
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+    <fieldset>
+        <legend>{{action}} User</legend>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.id.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="id">Id</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemUserEdit.id" ng-disabled="isDisabled('id')" class="form-control" name="id" readonly/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.name.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="name">Nombre</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemUserEdit.name" ng-disabled="isDisabled('name')" class="form-control" name="name" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.lastName1.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="lastName1">Apellido1</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemUserEdit.lastName1" ng-disabled="isDisabled('lastName1')" class="form-control" name="lastName1" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.lastName2.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="lastName2">Apellido2</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemUserEdit.lastName2" ng-disabled="isDisabled('lastName2')" class="form-control" name="lastName2" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.email.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="email">Correo</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemUserEdit.email" ng-disabled="isDisabled('email')" class="form-control" name="email" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.role.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="role">Rol</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-model="itemUserEdit.idRole" ng-disabled="isDisabled('idRole')" class="form-control" name="role" ng-options="obj.id as obj.description for obj in parameters.getRole() | orderBy:'description'" required></select>
+			</div>
+			</div>
+
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{action}}</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    </div>
+</form>
+

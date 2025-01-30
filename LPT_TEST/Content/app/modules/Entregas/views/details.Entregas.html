@@ -1,0 +1,234 @@
+<!-- Clase: Entregas, Ruta: entregas -->
+<form name="form" class="form-horizontal" ng-submit="save()" 
+	autocomplete="off" novalidate >
+	<fieldset>
+		<legend>{{action}} Entregas</legend>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.id.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="id">Id</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemEntregasEdit.id"
+					ng-disabled="isDisabled('id')" class="form-control" name="id"
+					required />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.codMep.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="codMep">Codigo
+				MEP</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.codMep"
+					ng-disabled="isDisabled('codMep')" class="form-control"
+					name="codMep" readonly />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.nombreEscuela.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="nombreEscuela">Nombre Escuela</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.nombreEscuela"
+					ng-disabled="isDisabled('nombreEscuela')" class="form-control"
+					name="nombreEscuela" readonly />
+			</div>
+		</div>
+		<!--  div class="form-group col-lg-6 col-md-6 col-sm-6"
+			ng-class="{'has-error': form.fechaAprobacion.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="fechaAprobacion">Fecha Aprobación</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<div class="input-group">
+					<input type="text" ng-model="itemEntregasEdit.fechaAprobacion"
+						ng-disabled="isDisabled('fechaAprobacion')" class="form-control"
+						name="fechaAprobacion" date-format="yyyy-mm-dd" date-type="iso"
+						input-datepicker /> <span class="input-group-btn">
+						<button type="button" ng-disabled="isDisabled('fechaAprobacion')"
+							class="btn btn-default" data-toggle="datepicker">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</div>
+
+			</div>-->
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.canal.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="canal">Canal</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-model="itemEntregasEdit.canal" class="form-control" name="canal" readonly>
+						<option value="V">Venta</option>
+						<option value="D">Donacion</option>
+						</select>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.nombreCliente.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="nombreCliente">Nombre Cliente</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.nombreCliente"
+					ng-disabled="isDisabled('nombreCliente')" class="form-control"
+					name="nombreCliente" readonly />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.numFacturaErp.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="numFacturaErp">Numero Factura ERP</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.numFacturaErp"
+					ng-disabled="isDisabled('numFacturaErp')" class="form-control"
+					name="numFacturaErp" readonly />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6"
+			ng-class="{'has-error': form.tipoRuta.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="tipoRuta">Tipo Ruta</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-change="changeTipoRuta()" ng-model="itemEntregasEdit.tipoRuta" ng-disabled="itemEntregasEdit.tipoRuta == 'E'" class="form-control" name="tipoRuta" required>
+						<option value="L">LPT</option>
+						<option value="E">Empresa</option>
+						<option value="S">Escuela</option>
+						<option value="B">Bodega</option>
+						<option value="D">Despacho nocturno</option>
+						<option value="R">Regional</option>	
+						<option value="C">Circuito</option>	
+						<option value="M">Encomienda</option>
+						<option value="O">Otro</option>	
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.ruta.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="ruta">Ruta</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.ruta"
+					ng-disabled="isDisabled('ruta')" class="form-control"
+					name="ruta" required />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.ruta1.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="ruta1">Ruta 1</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.ruta1"
+					ng-disabled="isDisabled('ruta1')" class="form-control"
+					name="ruta1" />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.direccionExacta.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="direccionExacta">Direccion Exacta</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemEntregasEdit.direccionExacta"
+					ng-disabled="isDisabled('direccionExacta')" class="form-control"
+					name="direccionExacta" required />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" 
+			ng-class="{'has-error': form.fechaEntrega.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="fechaEntrega">Fecha Entrega</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<div class="input-group">
+					<input type="text" ng-model="itemEntregasEdit.fechaEntrega"
+						ng-disabled="isDisabled('fechaEntrega')" class="form-control"
+						name="fechaEntrega" date-format="yyyy-mm-dd" date-type="iso"
+						input-datepicker /> <span class="input-group-btn">
+						<button type="button" ng-disabled="isDisabled('fechaEntrega')"
+							class="btn btn-default" data-toggle="datepicker">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</div>
+
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.cantLibros.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="cantLibros">Cantidad Libros</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemEntregasEdit.cantLibros"
+					ng-disabled="isDisabled('cantLibros')" class="form-control"
+					name="cantLibros" readonly />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.estado.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="estado">Estado</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-model="itemEntregasEdit.estado" class="form-control" name="estado" ng-disabled="itemEntregasEdit.estado == 'PER'">
+						<option ng-if="itemEntregasEdit.estado == 'PEN'" value="PEN">Pendiente</option>
+						<option ng-if="itemEntregasEdit.estado == 'PER' || itemEntregasEdit.estado == 'PEN'" value="PER">Pendiente ruta</option>
+						<option ng-if="itemEntregasEdit.estado == 'PAL'" value="PAL">Pendiente alisto</option>
+						<option ng-if="itemEntregasEdit.estado == 'PAL' || itemEntregasEdit.estado == 'PDE'" value="PDE">Pendiente despacho</option>
+						<option ng-if="itemEntregasEdit.estado == 'PDE'  || itemEntregasEdit.estado == 'PLQ'" value="PLQ">Pendiente Liquidacion</option>
+						<option ng-if="itemEntregasEdit.estado == 'PDE' || itemEntregasEdit.estado == 'PLQ' || itemEntregasEdit.estado == 'LQP'" value="LQP">Liquidada (devoluci&oacute;n total)</option>	
+						<option ng-if="itemEntregasEdit.estado == 'PLQ' || itemEntregasEdit.estado == 'LQ'" value="LQ">Liquidada</option>
+						<option ng-if="itemEntregasEdit.estado == 'PLQ' || itemEntregasEdit.estado == 'LQ'" value="LQP">Liquidada Parcial</option>	
+						<option ng-if="itemEntregasEdit.estado == 'LQ' || itemEntregasEdit.estado == 'CON'" value="CON">Confirmada</option>	
+				</select>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.numLote.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="numLote">N&uacute;mero
+				Lote</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemEntregasEdit.numLote"
+					ng-disabled="isDisabled('numLote')" class="form-control"
+					name="numLote" readonly />
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" 
+			ng-class="{'has-error': form.observaciones.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="observaciones">Observaciones</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<textarea ng-model="itemEntregasEdit.observaciones" name="observaciones" class="form-control ng-pristine ng-valid ng-valid-required" rows="2"></textarea>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6"
+			ng-class="{'has-error': form.idUsuarioBodega.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="idUsuarioBodega">Usuario Bodega</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-model="itemEntregasEdit.idUsuarioBodega"
+					ng-disabled="isDisabled('idUsuarioBodega')" class="form-control"
+					name="idUsuarioBodega"
+					ng-options="obj.id as obj.name for obj in parameters.getUser() | orderBy:'name'"
+					required></select>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6"
+			ng-class="{'has-error': form.idVehiculo.$invalid && !isBulkUpdate}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5"
+				for="idVehiculo">Vehiculo</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<select ng-model="itemEntregasEdit.idVehiculo"
+					ng-disabled="isDisabled('idVehiculo')" class="form-control"
+					name="idVehiculo"
+					ng-options="obj.id as obj.descripcion for obj in parameters.getVehiculo() | orderBy:'descripcion'"
+					required></select>
+			</div>
+		</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-show="!isBulkUpdate"
+			ng-class="{'has-error': form.idProforma.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="idProforma">Proforma</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemEntregasEdit.idProforma"
+					ng-disabled="isDisabled('idProforma')" class="form-control"
+					name="idProforma" readonly />
+			</div>
+		</div>
+	</fieldset>
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary"
+			ng-disabled="form.$invalid && !isBulkUpdate" ng-show="isReady">{{action}}</button>
+		<button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	</div>
+</form>
+

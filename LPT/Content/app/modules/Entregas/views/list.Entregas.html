@@ -1,0 +1,344 @@
+<blockquote>
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<span class="h2">Entregas</span>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<div class="input-group">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-primary dropdown-toggle"
+						data-toggle="dropdown">
+						Ver {{pag_size}} <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><link-to pag_size="5" pag_number="1">5 lineas</link-to></li>
+						<li><link-to pag_size="8" pag_number="1">8 lineas</link-to></li>
+						<li><link-to pag_size="13" pag_number="1">13 lineas</link-to></li>
+						<li><link-to pag_size="21" pag_number="1">21 lineas</link-to></li>
+						<li><link-to pag_size="34" pag_number="1">34 lineas</link-to></li>
+					</ul>
+					<link-to pag_number="1" data-toggle="enter" class="btn btn-primary">
+					<i class="glyphicon glyphicon-search"></i></link-to>
+				</div>
+				<input type="text" ng-model="query" class="form-control"
+					placeholder="Buscar" key-enter />
+				<div class="input-group-btn">
+					<link-to query="" pag_number="1" ng-disabled="!query"
+						class="btn btn-default">Limpiar</link-to>
+				</div>
+			</div>
+		</div>
+	</div>
+</blockquote>
+
+
+<ol class="breadcrumb">
+	<li><a href="#/"><i class="glyphicon glyphicon-home"></i></a></li>
+	<li><a href="#/{{parameters.routeBase}}/">Entregas</a></li>
+	<li ng-show="list_parms[0]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}">{{list_parms[0]}}</a></li>
+	<li ng-show="list_parms[1]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}">{{list_parms[1]}}</a></li>
+	<li ng-show="list_parms[2]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}">{{list_parms[2]}}</a></li>
+	<li ng-show="list_parms[3]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}">{{list_parms[3]}}</a></li>
+	<li ng-show="list_parms[4]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}">{{list_parms[4]}}</a></li>
+	<li ng-show="list_parms[5]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}">{{list_parms[5]}}</a></li>
+	<li ng-show="list_parms[6]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}">{{list_parms[6]}}</a></li>
+	<li ng-show="list_parms[7]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}">{{list_parms[7]}}</a></li>
+	<li ng-show="list_parms[8]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}/{{list_parms[8]}}">{{list_parms[8]}}</a></li>
+	<li ng-show="list_parms[9]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}/{{list_parms[8]}}/{{list_parms[9]}}">{{list_parms[9]}}</a></li>
+	<li ng-show="list_parms[10]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}/{{list_parms[8]}}/{{list_parms[9]}}/{{list_parms[10]}}">{{list_parms[10]}}</a></li>
+	<li ng-show="list_parms[11]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}/{{list_parms[8]}}/{{list_parms[9]}}/{{list_parms[10]}}/{{list_parms[11]}}">{{list_parms[11]}}</a></li>
+	<li ng-show="list_parms[12]"><a
+		href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}/{{list_parms[3]}}/{{list_parms[4]}}/{{list_parms[5]}}/{{list_parms[6]}}/{{list_parms[7]}}/{{list_parms[8]}}/{{list_parms[9]}}/{{list_parms[10]}}/{{list_parms[11]}}/{{list_parms[12]}}">{{list_parms[12]}}</a></li>
+
+	<li class="active">{{pag_number}}</li>
+</ol>
+
+<div class="table-responsive">
+	<table class="table table-striped table-condensed table-hover">
+		<thead>
+			<tr>
+				<th sort-by="id">Id</th>
+				<th sort-by="codMep">Codigo MEP</th>
+				<th sort-by="nombreEscuela">Nombre Escuela</th>
+				<th sort-by="canal">Canal</th>
+				<th sort-by="nombreCliente">Nombre Cliente</th>
+				<th sort-by="numFacturaErp">Numero Factura ERP</th>
+				<th sort-by="tipoRuta">Tipo Ruta</th>
+				<th sort-by="ruta">Ruta</th>
+				<th sort-by="ruta1">Ruta1</th>
+				<th sort-by="fechaEntrega">Fecha Entrega</th>
+				<th sort-by="cantLibros">Cantidad Libros</th>
+				<th sort-by="estado">Estado</th>
+				<th sort-by="numLote">Numero Lote</th>
+				<th sort-by="idUsuarioBodega">Usuario Bodega</th>
+				<th sort-by="idVehiculo">Vehiculo</th>
+				<th sort-by="idVehiculo">Proforma</th>
+				<th>&nbsp;</th>
+
+				<th>
+					<!-- a href="#/{{parameters.routeBase}}/new"
+					class="btn btn-xs btn-default"><i
+						class="glyphicon glyphicon-plus"></i></a> -->
+				</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[0]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[1]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[2]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<select ng-model="list_parms[3]" class="form-control input-sm"
+							key-enter>
+							<option value="D">D</option>
+							<option value="V">V</option>
+						</select> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[4]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[5]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<select ng-model="list_parms[8]" class="form-control input-sm"
+							key-enter>
+							<option value="L">LPT</option>
+							<option value="E">Empresa</option>
+							<option value="S">Escuela</option>
+							<option value="B">Bodega</option>
+							<option value="D">Despacho nocturno</option>
+							<option value="R">Regional</option>
+							<option value="C">Circuito</option>
+							<option value="M">Encomienda</option>
+							<option value="O">Otro</option>
+						</select> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[6]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[7]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[9]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[10]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<select ng-model="list_parms[11]" class="form-control input-sm"
+							key-enter>
+							<option value="PEN">Pendiente</option>
+							<option value="PER">Pendiente ruta</option>
+							<option value="PAL">Pendiente alisto</option>
+							<option value="PDE">Pendiente despacho</option>
+							<option value="PLQ">Pendiente Liquidacion</option>
+							<option value="LQ">Liquidada</option>
+							<option value="LQP">Liquidada parcial</option>
+							<option value="CON">Confirmada</option>
+						</select> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[12]" class="form-control input-sm"
+							key-enter /> <span class="input-group-btn"> <link-to
+								data-toggle="enter" pag_number="1"
+								class="btn btn-default btn-sm" title="Filtrar"> <i
+								class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				
+				<td>&nbsp;</td>
+
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr ng-repeat="itemEntregas in items"
+				id="itemEntregas_{{itemEntregas.id}}">
+				<td>{{itemEntregas.id}}</td>
+				<td>{{itemEntregas.codMep}}</td>
+				<td>{{itemEntregas.nombreEscuela}}</td>
+				<td>{{itemEntregas.canal}}</td>
+				<td>{{itemEntregas.nombreCliente}}</td>
+				<td>{{itemEntregas.numFacturaErp}}</td>
+				<td ng-if="itemEntregas.tipoRuta == 'L'">LPT</td>
+				<td ng-if="itemEntregas.tipoRuta == 'E'">Empresa</td>
+				<td ng-if="itemEntregas.tipoRuta == 'S'">Escuela</td>
+				<td ng-if="itemEntregas.tipoRuta == 'B'">Bodega</td>
+				<td ng-if="itemEntregas.tipoRuta == 'D'">Despacho nocturno</td>
+				<td ng-if="itemEntregas.tipoRuta == 'R'">Regional</td>
+				<td ng-if="itemEntregas.tipoRuta == 'C'">Circuito</td>
+				<td ng-if="itemEntregas.tipoRuta == 'M'">Encomienda</td>
+				<td ng-if="itemEntregas.tipoRuta == 'O'">Otro</td>
+				<td ng-if="itemEntregas.tipoRuta != 'L'  
+				&& itemEntregas.tipoRuta != 'E' 
+				&& itemEntregas.tipoRuta != 'S'
+				&& itemEntregas.tipoRuta != 'B'
+				&& itemEntregas.tipoRuta != 'D'
+				&& itemEntregas.tipoRuta != 'R'
+				&& itemEntregas.tipoRuta != 'C'
+				&& itemEntregas.tipoRuta != 'M'
+				&& itemEntregas.tipoRuta != 'O'
+				&& itemEntregas.tipoRuta != 'L'
+				">Sin definir</td>
+				<td>{{itemEntregas.ruta}}</td>	
+				<td>{{itemEntregas.ruta1}}</td>	
+				<td>{{itemEntregas.fechaEntrega | localtime | date:'yyyy-MM-dd'}}</td>
+				<td>{{itemEntregas.cantLibros}}</td>
+				<td ng-if="itemEntregas.estado == 'PEN'">Pendiente</td>
+				<td ng-if="itemEntregas.estado == 'PER'">Pendiente ruta</td>
+				<td ng-if="itemEntregas.estado == 'PAL'">Pendiente alisto</td>
+				<td ng-if="itemEntregas.estado == 'PDE'">Pendiente despacho</td>
+				<td ng-if="itemEntregas.estado == 'PLQ'">Pendiente liquidacion</td>
+				<td ng-if="itemEntregas.estado == 'LQ'">Liquidada</td>
+				<td ng-if="itemEntregas.estado == 'LQP'">Liquidada parcial</td>
+				<td ng-if="itemEntregas.estado == 'CON'">Confirmada</td>
+				<td>{{itemEntregas.numLote}}</td>
+				<td>
+					<select ng-model="itemEntregas.idUsuarioBodega"
+						class="form-control"
+						name="idUsuarioBodega"
+						ng-options="obj.id as obj.name for obj in listaUsuarios | orderBy:'name'"
+						disabled>
+					</select>
+				</td>
+				<td>
+					<select ng-model="itemEntregas.idVehiculo"
+						class="form-control"
+						name="idVehiculo"
+						ng-options="obj.id as obj.descripcion for obj in listaVehiculos | orderBy:'descripcion'"
+						disabled>
+					</select>
+				</td>
+				<td>{{itemEntregas.idProforma}}</td>
+				<td><input type="checkbox" ng-model="itemEntregas.checkMark" name="checkMark" ng-true-value="Y" ng-false-value="N" ng-change="changeMarkCheck(itemEntregas)"/></td>
+				<td><a class="btn btn-xs btn-default" href="#/{{parameters.routeBase}}/edit/{{itemEntregas.id}}">
+					<i class="glyphicon glyphicon-pencil"></i>
+					</a>
+				</td>
+				<td>
+					<a class="btn btn-xs btn-danger" confirm-delete="delete()">
+						<i class="glyphicon glyphicon-remove"></i>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="form-actions">
+	<button ng-click="sendAction()" class="btn btn-primary" ng-if="button.visble">{{button.label}}</button>
+	<button class="btn btn-primary" ng-if="button2.visble">
+		<a class="btn btn-xs btn-default" href="#/{{parameters.routeBase}}/edit/-666?s={{getlistIds()}}">
+			<i class="glyphicon glyphicon-pencil"></i>
+		</a>
+	</button>
+</div>
+<ul class="pager">
+	<li class="previous"><link-to pag_number="{{pag_number - 1}}"
+			ng-show="show_prev()">&larr; Anterior</link-to></li>
+	<li class="next"><link-to pag_number="{{pag_number + 1}}"
+			ng-show="show_next()">Siguiente &rarr;</link-to></li>
+</ul>

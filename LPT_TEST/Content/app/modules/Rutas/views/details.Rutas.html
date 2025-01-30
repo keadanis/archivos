@@ -1,0 +1,78 @@
+<!-- Clase: Rutas, Ruta: rutas --> 
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+    <fieldset>
+        <legend>{{action}} Rutas</legend>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.id.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="id">Id</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemRutasEdit.id" ng-disabled="isDisabled('id')" class="form-control" name="id" readonly/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.circuito.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="circuito">Circuito</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemRutasEdit.circuito" ng-disabled="isDisabled('circuito')" class="form-control" name="circuito" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.direccion.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="direccion">Dirección</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<textarea ng-disabled="isDisabled('direccion')" ng-model="itemRutasEdit.direccion" name="direccion" class="form-control" rows="2"></textarea>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.correo.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="correo">Correo</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.correo" ng-disabled="isDisabled('correo')" class="form-control" name="correo" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.telefono.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="telefono">Teléfono</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.telefono" ng-disabled="isDisabled('telefono')" class="form-control" name="telefono" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.celular.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="celular">Celular</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.celular" ng-disabled="isDisabled('celular')" class="form-control" name="celular" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nombreContacto.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="nombreContaco">Nombre contacto</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.nombreContacto" ng-disabled="isDisabled('nombreContacto')" class="form-control" name="nombreContacto" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.puesto.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="puesto">Puesto</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.puesto" ng-disabled="isDisabled('puesto')" class="form-control" name="puesto" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.regional.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="regional">Regional</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.regional" ng-disabled="isDisabled('regional')" class="form-control" name="regional" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.destino.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="destino">Destino</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="number" ng-model="itemRutasEdit.destino" ng-disabled="isDisabled('destino')" class="form-control" name="destino" required/>
+			</div>
+			</div>
+		<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.tipo.$invalid}">
+			<label class="control-label col-lg-5 col-md-5 col-sm-5" for="tipo">Tipo</label>
+			<div class="col-lg-7 col-md-7 col-sm-7">
+				<input type="text" ng-model="itemRutasEdit.tipo" ng-disabled="isDisabled('tipo')" class="form-control" name="tipo" required/>
+			</div>
+			</div>
+
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{action}}</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    </div>
+</form>
+

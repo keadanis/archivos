@@ -1,0 +1,88 @@
+<!-- Clase: PreOrder, Ruta: proformas --> 
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+   <fieldset>
+      <legend>{{action}} Proformas</legend>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.id.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="id">Id</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.id" ng-disabled="isDisabled('id')" class="form-control" name="id" required readonly="readonly"/>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.type.$invalid}" ng-hidden="true">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="type">Tipo</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <select disabled="disabled" ng-model="itemPreOrderEdit.type"  class="form-control" name="type" required>
+               <option value="D">Donaci&oacute;n</option>
+               <option value="V">Venta</option>
+            </select>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.customerName.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="customerName">Cliente</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.nameCustomerT" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'"  class="form-control" name="customerName" input-typeahead="itemPreOrderEdit.idCustomer" input-typeahead-data="parameters.getCustomer()" input-typeahead-text="nameCustomer" input-typeahead-value="idCustomer" required />
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.total.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="total">Total</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.total" disabled="disabled" class="form-control" name="total" required/>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.subTotal.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="subTotal">Subtotal</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.subTotal" disabled="disabled"  class="form-control" name="subTotal" required/>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.discount.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="discount">Descuento (%)</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.discount" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'"  class="form-control" name="discount" ng-change="updateTotal()" required/>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.date.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="date">Fecha</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <div class="input-group">
+               <input type="text" ng-model="itemPreOrderEdit.date" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'"  class="form-control" name="date" date-format="yyyy-mm-dd" date-type="iso" input-datepicker />
+               <span class="input-group-btn">
+               <button type="button" ng-disabled="isDisabled('date')" class="btn btn-default" data-toggle="datepicker"><i class="glyphicon glyphicon-calendar"></i></button>
+               </span>
+            </div>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.status.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="status">Estado</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.status" disabled="disabled" class="form-control" name="status" required/>
+         </div>
+      </div>
+      <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.userName.$invalid}">
+         <label class="control-label col-lg-5 col-md-5 col-sm-5" for="userName">Usuario</label>
+         <div class="col-lg-7 col-md-7 col-sm-7">
+            <input type="text" ng-model="itemPreOrderEdit.userName" disabled="disabled" class="form-control" name="userName" readonly/>
+         </div>
+      </div>
+   </fieldset>
+   <div ng-if="enableExecutiveButtons()" class="form-actions">
+      <button type="submit" class="btn btn-primary" ng-disabled="!isValidForm()">{{action}}</button>
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+      <a href="#/proformas/print/{{itemPreOrderEdit.id}}" class="btn btn-info" role="button"  ng-if="!form.id.$invalid">Generar proforma</a>
+      <button type="submit" class="btn btn-success" ng-click="updateStatus('PPA')" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'" ng-if="!form.id.$invalid">Solicitar aprobaci&oacute;n</button>
+      <!-- 		<button type="button" class="btn btn-default" ng-disabled="itemPreOrderEdit.id <=0" ng-click="#/proformas/print/{{itemPreOrderEdit.id}}">Imprimir</button> -->
+   </div>
+   <div ng-if="enableAdminButtons()" class="form-actions">
+      <button type="submit" class="btn btn-success" ng-click="updateStatus('APR')">Aprobar</button>
+      <button type="submit" class="btn btn-danger" ng-click="updateStatus('REC')">Rechazar</button>
+      <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+	</div>
+	<div ng-if="itemPreOrderEdit.status == 'APR' || itemPreOrderEdit.status == 'ENT'" class="form-actions">
+		<a href="#/proformas/printout/{{itemPreOrderEdit.id}}" class="btn btn-info" role="button"  ng-if="!form.id.$invalid">Imprimir Gu&iacute;a</a>
+	</div>
+</form>
+<div ng-if="ready">
+   <div ng-include src="'GroupPreOrderDetail/views/sublist.GroupPreOrderDetail.html' + '?updated=' + updateTime"></div>
+   <div ng-include src="'GroupPreOrderDetail/views/modal.GroupPreOrderDetail.html' + '?updated=' + updateTime"></div>
+   <div ng-include src="'GroupPreOrderDetail/views/sublist.sale.GroupPreOrderDetail.html' + '?updated=' + updateTime"></div>
+</div>

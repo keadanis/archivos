@@ -1,0 +1,106 @@
+<blockquote>
+   <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+         <span class="h2">Clientes</span>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+         <div class="input-group">
+            <div class="input-group-btn">
+               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+               Ver {{pag_size}} <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu">
+                  <li>
+                     <link-to pag_size="5" pag_number="1">5 líneas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="8" pag_number="1">8 líneas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="13" pag_number="1">13 líneas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="21" pag_number="1">21 líneas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="34" pag_number="1">34 líneas</link-to>
+                  </li>
+               </ul>
+               <link-to pag_number="1" data-toggle="enter" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></link-to>
+            </div>
+            <input type="text" ng-model="query" class="form-control" placeholder="Buscar" key-enter />
+            <div class="input-group-btn">
+               <link-to query="" pag_number="1" ng-disabled="!query" class="btn btn-default">Limpiar</link-to>
+            </div>
+         </div>
+      </div>
+   </div>
+</blockquote>
+<ol class="breadcrumb">
+   <li><a href="#/"><i class="glyphicon glyphicon-home"></i></a></li>
+   <li><a href="#/{{parameters.routeBase}}/">Clientes</a></li>
+   <li ng-show="list_parms[0]"><a href="#/{{parameters.routeBase}}/{{list_parms[0]}}">{{list_parms[0]}}</a></li>
+   <li class="active">{{pag_number}}</li>
+</ol>
+<div class="table-responsive">
+   <table class="table table-striped table-condensed table-hover">
+      <thead>
+         <tr>
+            <th sort-by="idCustomer">Id</th>
+            <th sort-by="idNumber">Cédula</th>
+            <th sort-by="NombreComercial">Nombre Comercial</th>
+            <th sort-by="nameCustomer">Nombre</th>
+            <th sort-by="phone">Teléfono</th>
+            <th sort-by="email">Correo</th>
+            <th><a href="#/{{parameters.routeBase}}/new?TCustomer=D" class="btn btn-primary">Donaci&oacute;n</i></a></th>
+	        <th><a href="#/{{parameters.routeBase}}/new?TCustomer=V" class="btn btn-success">Venta</i></a></th>
+            <th>&nbsp;</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>&nbsp;</td>
+            <td>
+               <div class="input-group">
+                  <input ng-model="list_parms[0]" class="form-control input-sm" key-enter/>
+                  <span class="input-group-btn">
+                     <link-to data-toggle="enter" pag_number="1" class="btn btn-default btn-sm" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+                  </span>
+               </div>
+            </td>
+            <td>&nbsp;</td>
+            <td>
+               <div class="input-group">
+                  <input ng-model="list_parms[1]" class="form-control input-sm" key-enter/>
+                  <span class="input-group-btn">
+                     <link-to data-toggle="enter" pag_number="1" class="btn btn-default btn-sm" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+                  </span>
+               </div>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <th>&nbsp;</th>
+         </tr>
+         <tr ng-repeat="itemCustomer in items" id="itemCustomer_{{itemCustomer.idCustomer}}_{{itemCustomer.idNumber}}">
+            <td>{{itemCustomer.idCustomer}}</td>
+            <td>{{itemCustomer.idNumber}}</td>
+            <td>{{itemCustomer.NombreComercial}}</td>
+            <td>{{itemCustomer.nameCustomer}}</td>
+            <td>{{itemCustomer.phone}}</td>
+            <td>{{itemCustomer.email}}</td>
+            <td><a class="btn btn-xs btn-default" href="#/{{parameters.routeBase}}/edit/{{itemCustomer.idCustomer}}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+            <td><a class="btn btn-xs btn-danger" confirm-delete="delete()"><i class="glyphicon glyphicon-remove"></i></a></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<ul class="pager">
+   <li class="previous">
+      <link-to pag_number="{{pag_number - 1}}" ng-show="show_prev()">&larr; Anterior</link-to>
+   </li>
+   <li class="next">
+      <link-to pag_number="{{pag_number + 1}}" ng-show="show_next()">Siguiente &rarr;</link-to>
+   </li>
+</ul>

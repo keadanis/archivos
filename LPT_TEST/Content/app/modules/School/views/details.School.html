@@ -1,0 +1,187 @@
+<!-- Clase: School, Ruta: escuelas --> 
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+  <fieldset>
+    <legend>{{action}} Escuelas
+    </legend>
+	<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.customerType.$invalid}">
+		<label class="control-label col-lg-5 col-md-5 col-sm-5"  for="customerType">Periodo</label>
+		<div class="col-lg-7 col-md-7 col-sm-7">
+			<select ng-model="itemSchoolEdit.year" name="year" class="form-control" ng-change="changeYear()" required>
+				<option value="{{(curDate | date:'yyyy') * 1 + 1 - 2}}">{{(curDate | date:'yyyy') * 1 - 2}}</a></option>
+				<option value="{{(curDate | date:'yyyy') * 1 + 1 - 1}}">{{(curDate | date:'yyyy') * 1 - 1}}</a></option>
+				<option value="{{curDate | date:'yyyy'}}">{{curDate | date:'yyyy'}}</a></option>
+				<option value="{{(curDate | date:'yyyy') * 1 + 1}}">{{(curDate | date:'yyyy') * 1 + 1}}</a></option>
+				<option value="{{(curDate | date:'yyyy') * 1 + 2}}">{{(curDate | date:'yyyy') * 1 + 2}}</a></option>
+			</select>
+		</div>
+	</div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.idSchool.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="idSchool">Id
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.idSchool" ng-disabled="isDisabled('idSchool')" class="form-control" name="idSchool" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nameSchool.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="nameSchool">Nombre
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.nameSchool" ng-disabled="isDisabled('nameSchool')" class="form-control" name="nameSchool" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.codMep.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="codMep">Cod.Mep
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.codMep" ng-disabled="isDisabled('codMep')" class="form-control" name="codMep" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.province.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="province">Provincia
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.province" ng-disabled="isDisabled('province')" class="form-control" name="province" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.canton.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="canton">Canton
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.canton" ng-disabled="isDisabled('canton')" class="form-control" name="canton" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.distric.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="distric">Distrito
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.distric" ng-disabled="isDisabled('distric')" class="form-control" name="distric" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.zona.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="zona">Zona
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.zona" ng-disabled="isDisabled('zona')" class="form-control" name="zona" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.poblado.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="poblado">Poblado
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.poblado" ng-disabled="isDisabled('poblado')" class="form-control" name="poblado" required readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.status.$invalid}">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="status">Estado
+      </label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-disabled="isDisabled('status')" ng-model="itemSchoolEdit.status" name="status" />
+            <span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemSchoolEdit.status, 'glyphicon-thumbs-down off' : !itemSchoolEdit.status}">
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="dirRegional">Dir.Regional</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.dirRegional" ng-disabled="isDisabled('dirRegional')" class="form-control" name="dirRegional"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="circuito">Circuito</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.circuito" ng-disabled="isDisabled('circuito')" class="form-control" name="circuito"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="matriculaAct">Matricula</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.matriculaAct" ng-disabled="isDisabled('matriculaAct')" class="form-control" name="matriculaAct" readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="donante">Donante</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.donante" ng-disabled="isDisabled('donante')" class="form-control" name="donante"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="vendedor">Usuario(s)</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.vendedor" ng-disabled="isDisabled('vendedor')" class="form-control" name="vendedor" readonly/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="contactName">Nombre Contacto</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.contactName" ng-disabled="isDisabled('contactName')" class="form-control" name="contactName"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="tel">Tel&eacute;fono</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.tel" ng-disabled="isDisabled('tel')" class="form-control" name="tel"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="email">Correo</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.email" ng-disabled="isDisabled('email')" class="form-control" name="email"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="address">Dir.Exacta</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.address" ng-disabled="isDisabled('address')" class="form-control" name="address"/>
+      </div>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6">
+      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="idsPreorders">Proformas</label>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <input type="text" ng-model="itemSchoolEdit.idsPreorders" ng-disabled="isDisabled('idsPreorders')" class="form-control" name="idsPreorders" readonly/>
+      </div>
+    </div>
+	<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.comments.$invalid}">
+		<label class="control-label col-lg-5 col-md-5 col-sm-5" for="comments">Observaciones</label>
+		<div class="col-lg-7 col-md-7 col-sm-7">
+			<textarea ng-disabled="isDisabled('comments')" ng-model="itemSchoolEdit.comments" name="comments" class="form-control" rows="2"></textarea>
+		</div>
+	</div>
+  </fieldset>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{action}}</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+  </div>
+    <div class="table-responsive">
+	    <table class="table table-striped table-condensed table-hover">
+	        <thead>
+	            <tr>
+					<th>Grado</th>
+					<th>Cantidad</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr ng-repeat="itemMatricula in itemSchoolEdit.matricula.details  | orderBy:'grade'">
+	            	<td ng-if="itemMatricula.grade == 1">Primero</td>
+	            	<td ng-if="itemMatricula.grade == 2">Segundo</td>
+	            	<td ng-if="itemMatricula.grade == 3">Tercero</td>
+	            	<td ng-if="itemMatricula.grade == 4">Cuarto</td>
+	            	<td ng-if="itemMatricula.grade == 5">Quinto</td>
+	            	<td ng-if="itemMatricula.grade == 6">Sexto</td>
+	            	<td ng-if="itemMatricula.grade == 7">Setimo</td>
+	            	<td ng-if="itemMatricula.grade == 8">Octavo</td>
+	            	<td ng-if="itemMatricula.grade == 9">Noveno</td>
+	            	<td ng-if="itemMatricula.grade == 10">Decimo</td>
+	            	<td ng-if="itemMatricula.grade == 11">Undecimo</td>
+	            	<td ng-if="itemMatricula.grade == 12">Duodecimo</td>
+	            	<td ng-if="itemMatricula.grade > 12">N/A</td>
+	            	<td ng-if="itemMatricula.grade < 1">N/A</td>
+	            	<td ng-show="!enable"><input type="text" ng-model="itemMatricula.quantity" ng-disabled="isDisabled('quantity')" class="form-control" name="quantity"/> </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+</form>

@@ -1,0 +1,35 @@
+<div class="col-lg-6 col-md-6 col-sm-6">
+	<span class="h2">Reportes</span>
+	<br/>
+	<br/>
+	<div class="panel panel-primary">
+		<!-- Default panel contents -->
+		<div class="panel-heading">Reporte Proformas</div>
+		<div class="panel-body">
+			<div>
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="date">Fecha Inicial</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<div class="input-group">
+						<input type="text" ng-model="initDate"  class="form-control" name="date" date-format="yyyy-mm-dd" date-type="iso" pattern="yyyy-MM-dd" input-datepicker />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-toggle="datepicker"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div style="margin-top:50px;">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="date">Fecha Final</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<div class="input-group">
+						<input type="text" ng-model="endDate" class="form-control" name="date" date-format="yyyy-mm-dd" date-type="iso" pattern="yyyy-MM-dd" input-datepicker />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-toggle="datepicker"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>			
+			<p><button class="btn btn-default" ng-click="getPreOrderData()" ng-if="initDate && endDate">Generar Reporte</button></p>
+			<p><button ng-if="preOrderData.length>0" class="btn btn-default" ng-csv="preOrderData" filename="{{'Reporte_Proformas_' + initDate + '_' + endDate + '.csv'}}" csv-header="getHeader()" field-separator=";" decimal-separator=".">Export to CSV</button></p>
+		</div>						
+	</div>
+</div>

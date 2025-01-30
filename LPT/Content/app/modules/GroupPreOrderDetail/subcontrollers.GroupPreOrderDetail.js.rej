@@ -1,0 +1,9 @@
+diff a/LPT/WebContent/Content/app/modules/GroupPreOrderDetail/subcontrollers.GroupPreOrderDetail.js b/LPT/WebContent/Content/app/modules/GroupPreOrderDetail/subcontrollers.GroupPreOrderDetail.js	(rejected hunks)
+@@ -855,7 +855,6 @@
+ 
+             };
+             
+-            	return "Los paquetes están conformados por las 4 materias básicas, correspondientes a cada nivel. Los productos complementarios son gratuitos para los docentes. Una vez que se nos proporcionan los datos de los docentes, se les brinda el código para acceder al Club Docente. La donación del producto entregado representa el monto de " + $scope.getTotalBySchool(listDetails,idSchool);
+             $scope.returnComment = function(pOrder,idSchool){
+             	return "Los paquetes están conformados por las 4 materias básicas, correspondientes a cada nivel. Los productos complementarios son gratuitos para los docentes. Una vez que se nos proporcionan los datos de los docentes, se les brinda el código para acceder al Club Docente. La donación del producto entregado representa el monto de " +  $filter('currency')(pOrder.total, "₡", 2);
+             };

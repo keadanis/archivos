@@ -1,0 +1,116 @@
+<div  ng-controller="GroupPreOrderDetailSubCreateCtrl">
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+   <fieldset>
+      <div class="modal fade" id="detalleModal">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header warning">
+                  <button type="button" class="close" ng-click="resetModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">{{actionDetail}} Detalle</h4>
+               </div>
+               <div class="modal-body">
+                  <div class="form-horizontal">
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">Datos generales</div>
+                        <div class="panel-body">
+                           <div class="form-group col-lg-12 col-md-12 col-sm-12"  ng-class="{'has-error': form.schoolT.$invalid}">
+                              <label class="control-label col-lg-2 col-md-2 col-sm-2" for="schoolT">Escuela</label>
+                              <div class="col-lg-9 col-md-9 col-sm-9">
+                                 <input type="text" ng-model="itemGroupPreOrderDetailEdit.schoolT" ng-disabled="isDisabled('schoolT')" class="form-control" name="schoolT" input-typeahead="itemGroupPreOrderDetailEdit.school.idSchool" input-typeahead-data="parameters.getSchools()" input-typeahead-text="displayName" input-typeahead-value="idSchool" />
+                              </div>
+                              <span ng-show="itemGroupPreOrderDetailEdit.schoolInPre" class="glyphicon glyphicon-warning-sign"></span>
+                           </div>
+                           <div class="form-group col-lg-6 col-md-6 col-sm-6"  ng-class="{'has-error': form.description.$invalid}">
+                              <label class="control-label col-lg-5 col-md-5 col-sm-5" >Descripci&oacute;n</label>
+                              <div class="col-lg-7 col-md-7 col-sm-7">
+                                 <input type="text" ng-model="itemGroupPreOrderDetailEdit.description" class="form-control" name="description"  ng-required="true"/>
+                              </div>
+                           </div>
+                           <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                              <label class="control-label col-lg-5 col-md-5 col-sm-5" >Cant.Total</label>
+                              <div class="col-lg-7 col-md-7 col-sm-7">
+                                 <input type="text" ng-model="itemGroupPreOrderDetailEdit.cantProducts" class="form-control"  disabled="disabled" />
+                              </div>
+                           </div>
+                           <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                              <label class="control-label col-lg-5 col-md-5 col-sm-5" >Mont.Total</label>
+                              <div class="col-lg-7 col-md-7 col-sm-7">
+                                 <input type="text" ng-model="itemGroupPreOrderDetailEdit.totalAmount" class="form-control" disabled="disabled"/>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">Detalle productos</div>
+                        <div class="panel-body">
+                           <div class="table-responsive">
+                              <table class="table table-striped table-condensed table-hover">
+                                 <thead>
+                                    <tr>
+                                       <th>Producto</th>
+                                       <th>Cantidad</th>
+                                       <th ng-show="itemPreOrderEdit.discount == 0">Descuento</th>
+                                       <th>Monto</th>
+                                       <th>&nbsp;</th>
+                                       <th>&nbsp;</th>
+                                    </tr>
+                                    <tr>
+                                       <td>	
+                                       	  <input type="text" ng-model="itemDetNew.defaultCodeT" ng-disabled="isDisabled('defaultCodeT')" class="form-control" name="defaultCodeT" input-typeahead="itemDetNew.defaultCode" input-typeahead-data="parameters.getProducts()" input-typeahead-text="name" input-typeahead-value="defaultCode" ng-change="changeAddProduct()"/>
+                                          <!-- select ng-model="itemDetNew.defaultCode"  class="form-control" name="defaultCode" ng-options="obj.defaultCode as obj.name for obj in parameters.getProducts() | orderBy:'name'" ng-change="changeAddProduct()"></select-->
+                                       </td>
+                                       <td>
+                                          <input type="text" ng-model="itemDetNew.quantity"  class="form-control" ng-change="changeAddQuantity()"/>
+                                       </td>
+                                       <td ng-show="itemPreOrderEdit.discount == 0">
+                                          <input type="text" ng-model="itemDetNew.discount"  class="form-control" ng-change="changeAddQuantity()"/>
+                                       </td>
+                                       <td>
+                                          <input type="text" ng-model="itemDetNew.amount"  class="form-control"  disabled="disabled"/>
+                                       </td>
+                                       <td>
+                                          <button type="button" class="btn btn-xs btn-default" ng-click="addDetailDet(itemDetNew)"><i class="glyphicon glyphicon-plus" title="Agregar"></i></button>
+                                       </td>
+                                       <td>&nbsp;</td>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr ng-repeat="itemProductDetailEdit in itemGroupPreOrderDetailEdit.preOrderProductDetails | orderBy:'defaultCode'">
+                                       <td>
+                                          <input type="text" ng-model="itemProductDetailEdit.defaultCodeT" ng-disabled="isDisabled('defaultCodeT')" class="form-control" name="defaultCodeT" input-typeahead="itemProductDetailEdit.defaultCode" input-typeahead-data="parameters.getProducts()" input-typeahead-text="name" input-typeahead-value="defaultCode" ng-change="changeEditProduct(itemProductDetailEdit)"/>
+                                          <!-- select ng-model="itemProductDetailEdit.defaultCode"  class="form-control" ng-options="obj.defaultCode as obj.name for obj in parameters.getProducts() | orderBy:'name'" ng-change="changeEditProduct(itemProductDetailEdit)"></select-->
+                                       </td>
+                                       <td>
+                                          <input type="text" ng-model="itemProductDetailEdit.quantity"  class="form-control" ng-change="changeEditQuantity(itemProductDetailEdit)" />
+                                       </td>
+                                       <td ng-if="itemPreOrderEdit.discount == 0">
+                                          <input type="text" ng-model="itemProductDetailEdit.discount"  class="form-control" ng-change="changeEditQuantity(itemProductDetailEdit)" />
+                                       </td>
+                                       <td>
+                                          <input type="text" ng-model="itemProductDetailEdit.amount"  class="form-control" disabled="disabled" />
+                                       </td>
+                                       <td>
+                                          <button type="button" class="btn btn-xs btn-danger" confirm-delete="removeDetailDet(itemProductDetailEdit)"><i class="glyphicon glyphicon-remove"></i></button>
+                                       </td>
+                                       <td>&nbsp;</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button  type="button" class="btn btn-default" ng-click="resetModal()" >Cancelar</button>
+                     <button  type="submit" class="btn btn-primary"  ng-disabled="(itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC') || !validQuantity">Aceptar</button>
+                     <div ng-if="false"></div>
+                  </div>
+               </div>
+               <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+         </div>
+         <!-- /.modal -->
+   </fieldset>
+</form>
+</div>

@@ -1,0 +1,166 @@
+﻿
+.table .input-group-btn {
+    width: auto;
+}
+
+.table thead tr th {
+    white-space: nowrap;
+}
+
+.table tbody tr td {
+    padding-left: 5px;
+}
+
+.table thead tr th a {
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+
+.table thead tr th:first-child a {
+    border-left: 0;
+}
+
+.on {
+    color: #ff6633;
+    padding: 2px;
+    border: 1px solid #ff6633;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.off {
+    color: #c4c3d0;
+    padding: 3px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 999px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+@media (min-width: 768px) {
+    .navbar {
+        box-shadow: 0 0 5px #303030;
+    }
+
+        .navbar .container-fluid {
+            padding-left: 0;
+        }
+}
+
+.container {
+    width: auto;
+}
+
+.footer {
+    background: url("") repeat-x scroll left top #101010;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    clear: both;
+    color: #FFFFFF;
+    font-size: 11px;
+    padding: 20px 20px 10px;
+    position: fixed;
+    z-index: 1000;
+}
+
+.page {
+    width: auto;
+    height: auto;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding-bottom: 60px;
+    background-color: white;
+}
+
+    .page.ng-leave {
+        z-index: 999;
+    }
+
+    .page.ng-enter {
+        position: absolute;
+        padding-top: 50px;
+        z-index: 888;
+    }
+
+.page-home.ng-leave {
+    -webkit-transform-origin: 0% 0%;
+    -webkit-animation: bounceOut 0.5s both ease-in;
+    -moz-transform-origin: 0% 0%;
+    -moz-animation: bounceOut 0.5s both ease-in;
+    transform-origin: 0% 0%;
+    animation: bounceOut 0.5s both ease-in;
+}
+
+.page-home.ng-enter {
+    -webkit-animation: fadeInDown 0.5s both ease-in;
+    -moz-animation: fadeInDown 0.5s both ease-in;
+    animation: fadeInDown 0.5s both ease-in;
+}
+
+.alert-top {
+    position: absolute;
+    text-align: center;
+    top: 15px;
+    right:15px;
+    z-index:1001;
+    opacity:0.9;
+}
+.alert-top.ng-enter {
+    -webkit-animation: bounceInRight 0.5s both ease-in;
+    -moz-animation: bounceInRight 0.5s both ease-in;
+    animation: bounceInRight 0.5s both ease-in;
+}
+.alert-top.ng-leave {
+    -webkit-transform-origin: 0% 0%;
+    -webkit-animation: bounceOutUp 0.5s both ease-in;
+    -moz-transform-origin: 0% 0%;
+    -moz-animation: bounceOutUp 0.5s both ease-in;
+    transform-origin: 0% 0%;
+    animation: bounceOutUp 0.5s both ease-in;
+}
+
+.dropdown-header-custom {
+  display: block;
+  padding: 3px 20px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #FFFFFF;
+  font-weight: bold;
+  background-color: rgba(158, 158, 158, 1);
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}

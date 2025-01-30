@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="Customer" xmlns:ng="http://angularjs.org">
+<head>
+    <title>Clientes</title>
+    <link href="../commons/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/datepicker.css" rel="stylesheet" />
+    <link href="../css/typeahead.js-bootstrap.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
+    <link href="../css/animate.css" rel="stylesheet" />
+     <link href="../css/homePage.css" rel="stylesheet" />
+
+    <script src="../commons/jquery-1.10.2.min.js"></script>
+
+    <script src="../commons/angular/angular.min.js"></script>
+    <script src="../commons/angular/angular-route.min.js"></script>
+    <script src="../commons/angular/angular-resource.min.js"></script>
+    <script src="../commons/angular/angular-animate.min.js"></script>
+    <script src="../commons/angular/angular-cookies.js"></script>
+
+    <script src="../commons/typeahead.min.js"></script>
+    <script src="../commons/jquery.maskedinput.min.js"></script>
+    <script src="../commons/ngMask.js"></script>
+    <script src="../commons/mask.js"></script>
+
+    <script src="../commons/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../commons/bootstrap-datepicker.js"></script>
+
+    <script src="../framework/utils.js"></script>
+    <script src="../framework/filters.js"></script>
+    <script src="../framework/services.js"></script>
+    <script src="../framework/directives.js"></script>
+    <script src="../framework/controllers.js"></script>
+
+	<script src="Customer.js"></script>
+	<script src="Customer/services.Customer.js"></script>
+	<script src="Customer/controllers.Customer.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div ng-include src="'Menu/views/nav.menu.html'"></div>
+    <div class="container">
+        <div ng-view class="page page-home"></div>
+    </div>
+    <div ng-include src="'Menu/views/nav.footer.html'"></div>
+
+    <div id="Message" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Loading" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content lead text-center">
+                <img src="../images/ajax-loader-spin_64.gif" />
+                Un momento por favor...
+            </div>
+        </div>
+    </div>    
+
+    <div id="Question" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancelar</a>
+                    <button class="btn btn-warning">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

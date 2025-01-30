@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="Login" xmlns:ng="http://angularjs.org">
+<head>
+    <title>Login</title>
+    <link href="../commons/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/Odoo_files/full.css">
+    <link href="../css/Odoo_files/base.css" rel="stylesheet">
+
+
+    <script src="../commons/jquery-1.10.2.min.js"></script>
+
+	
+    <script src="../commons/angular/angular.min.js"></script>
+    <script src="../commons/angular/angular-route.min.js"></script>
+    <script src="../commons/angular/angular-resource.min.js"></script>
+    <script src="../commons/angular/angular-animate.min.js"></script>
+    <script src="../commons/angular/angular-cookies.js"></script>
+
+
+    <script src="../commons/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../commons/bootstrap-datepicker.js"></script>
+
+    <script src="../framework/utils.js"></script>
+    <script src="../framework/filters.js"></script>
+    <script src="../framework/services.js"></script>
+    <script src="../framework/directives.js"></script>
+    <script src="../framework/controllers.js"></script>
+
+	<script src="Login.js"></script>
+	<script src="Login/services.Login.js"></script>
+	<script src="Login/controllers.Login.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="oe_single_form">
+
+    <div class="oe_single_form_container modal-content">
+        <div ng-view class="page page-home"></div>
+    </div>
+
+    <div id="Message" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Loading" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content lead text-center">
+                <img src="../images/ajax-loader-spin_64.gif" />
+                Un momento por favor...
+            </div>
+        </div>
+    </div>    
+
+</body>
+</html>

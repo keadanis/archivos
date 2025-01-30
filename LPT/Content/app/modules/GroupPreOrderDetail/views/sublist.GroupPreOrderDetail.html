@@ -1,0 +1,39 @@
+<div ng-if="itemPreOrderEdit.type == 'D'" class="table-responsive">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+            	<th>&nbsp;</th>
+				<th>Descripci&oacute;n</th>
+				<th>Cant.Productos</th>
+				<th>Total</th>
+
+                <th>&nbsp;</th>
+                <th><button type="button" class="btn btn-xs btn-default" ng-click="showModalDetalle()" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'"><i class="glyphicon glyphicon-plus" title="{{action}}"></i></button></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat="itemGroupPreOrderDetail in itemPreOrderEdit.listPreOrderDetail" id="itemGroupPreOrderDetail_{{itemGroupPreOrderDetail.NumOrder}}" ng-controller="GroupPreOrderDetailSubEditCtrl" ng-form="form">
+				<td><span ng-show="itemGroupPreOrderDetail.schoolInPre"  class="glyphicon glyphicon-warning-sign"></span></td>
+				<td ng-show="!enable">{{itemGroupPreOrderDetail.description}}</td>
+				<td ng-show="!enable">{{itemGroupPreOrderDetail.cantProducts}}</td>
+				<td ng-show="!enable">{{itemGroupPreOrderDetail.totalAmount | currency:"₡"}}</td>
+
+                <td ng-show="!enable">
+                    <button type="button" class="btn btn-xs btn-default" ng-click="editar(itemGroupPreOrderDetail)"><i class="glyphicon glyphicon-pencil"></i></button>
+                </td>
+                <td ng-show="!enable">
+                    <button type="button" class="btn btn-xs btn-danger" confirm-delete="removeDetail(itemGroupPreOrderDetail)" ng-disabled="itemPreOrderEdit.status !='ING' && itemPreOrderEdit.status !='REC'"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                <td ng-show="enable">
+                    <button type="button" class="btn btn-xs btn-primary" ng-click="save()"><i class="glyphicon glyphicon-ok" title="{{action}}"></i></button>
+                </td>
+                <td ng-show="enable">
+                    <button type="button" class="btn btn-xs btn-default" ng-click="cancel()"><i class="glyphicon glyphicon-ban-circle"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+

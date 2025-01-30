@@ -1,0 +1,142 @@
+<blockquote>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <span class="h2">Proformas</span>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Ver {{pag_size}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><link-to pag_size="5" pag_number="1">5 líneas</link-to></li>
+                        <li><link-to pag_size="8" pag_number="1">8 líneas</link-to></li>
+                        <li><link-to pag_size="13" pag_number="1">13 líneas</link-to></li>
+                        <li><link-to pag_size="21" pag_number="1">21 líneas</link-to></li>
+                        <li><link-to pag_size="34" pag_number="1">34 líneas</link-to></li>
+                    </ul>
+                    <link-to pag_number="1" data-toggle="enter" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></link-to>
+                </div>
+                <input type="text" ng-model="query" class="form-control" placeholder="Buscar" key-enter />
+                <div class="input-group-btn">
+                    <link-to query="" pag_number="1" ng-disabled="!query" class="btn btn-default">Limpiar</link-to>
+                </div>
+            </div>
+        </div>
+    </div>
+</blockquote>
+
+
+<ol class="breadcrumb">
+    <li><a href="#/"><i class="glyphicon glyphicon-home"></i></a></li>
+    <li><a href="#/{{parameters.routeBase}}/">Proformas</a></li>
+	<li ng-show="list_parms[0]"><a href="#/{{parameters.routeBase}}/{{list_parms[0]}}">{{list_parms[0]}}</a></li>
+	<li ng-show="list_parms[1]"><a href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}">{{list_parms[1]}}</a></li>
+	<li ng-show="list_parms[2]"><a href="#/{{parameters.routeBase}}/{{list_parms[0]}}/{{list_parms[1]}}/{{list_parms[2]}}">{{list_parms[2]}}</a></li>
+
+    <li class="active">{{pag_number}}</li>
+</ol>
+<div ng-show="list_parms[2]" class="alert alert-info" role="alert"><strong> Total: {{totalCustomer | currency:"₡ "}}</strong></div>
+<div class="table-responsive">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+			<tr>
+				<th sort-by="id">Id</th>
+				<th sort-by="type">Tipo</th>
+				<th sort-by="customerName">Cliente</th>
+				<th sort-by="total">Total</th>
+				<th sort-by="date">Fecha</th>
+				<th sort-by="status">Estado</th>
+				<th sort-by="userName">Usuario</th>
+
+				<th>
+					<div class="btn-group">
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Donaci&oacute;n <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu">
+					    <li><a href="#/{{parameters.routeBase}}/new?TPreOrder=D">Precarga</a></li>
+					    <li><a href="#/{{parameters.routeBase}}/new?TPreOrder=DB">Blanco</a></li>
+					    <li><a href="/{{$root.context}}/Content/app/modules/School.html">Desde escuelas</a></li>
+					  </ul>
+					</div>
+				</th>
+	            <th><a href="#/{{parameters.routeBase}}/new?TPreOrder=V" class="btn btn-success">Venta</i></a></th>
+				<th>&nbsp;</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+				<td>
+					<div class="input-group">
+						<input ng-model="list_parms[0]" class="form-control" key-enter/>
+						<span class="input-group-btn">
+							<link-to data-toggle="enter" pag_number="1" class="btn btn-default" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>					
+					<div class="input-group">
+						<select ng-model="list_parms[1]" class="form-control" key-enter>
+							<option value="D">Donaci&oacute;n</option>
+							<option value="V">Venta</option>
+						</select>
+						<span class="input-group-btn">
+							<link-to data-toggle="enter" pag_number="1" class="btn btn-default" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>
+					<div class="input-group">
+						<input ng-click type="text" ng-model="itemPreOrder.nameCustomerT" class="form-control" name="customerName" input-typeahead="list_parms[2]" input-typeahead-data="customerData" input-typeahead-text="nameCustomer" input-typeahead-value="idCustomer" key-enter/>
+						<span class="input-group-btn">
+							<link-to data-toggle="enter" pag_number="1" class="btn btn-default" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>					
+					<div class="input-group">
+						<select ng-model="list_parms[3]" class="form-control" key-enter>
+							<option value="ING">Ingresada</option>
+							<option value="PPA">Por Aprobar</option>
+							<option value="APR">Aprobada</option>
+							<option value="REC">Rechazada</option>
+							<option value="ENT">Entregada</option>
+						</select>
+						<span class="input-group-btn">
+							<link-to data-toggle="enter" pag_number="1" class="btn btn-default" title="Filtrar"><i class="glyphicon glyphicon-filter"></i></link-to>
+						</span>
+					</div>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr ng-repeat="itemPreOrder in items" id="itemPreOrder_{{itemPreOrder.id}}">
+				<td>{{itemPreOrder.id}}</td>
+				<td>{{itemPreOrder.type}}</td>
+				<td>{{itemPreOrder.customerName}}</td>
+				<td>{{itemPreOrder.total  | currency:"₡ "}}</td>
+				<td>{{itemPreOrder.date | date:'dd-MM-yyyy'}}</td>
+				<td>{{itemPreOrder.status}}</td>
+				<td>{{itemPreOrder.userName}}</td>
+
+                <td><a class="btn btn-xs btn-default" href="#/{{parameters.routeBase}}/edit/{{itemPreOrder.id}}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a class="btn btn-xs btn-danger" confirm-delete="delete()"><i class="glyphicon glyphicon-remove"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ul class="pager">
+    <li class="previous">
+        <link-to pag_number="{{pag_number - 1}}" ng-show="show_prev()">&larr; Anterior</link-to>
+    </li>
+    <li class="next">
+        <link-to pag_number="{{pag_number + 1}}" ng-show="show_next()">Siguiente &rarr;</link-to>
+    </li>
+</ul>

@@ -1,0 +1,111 @@
+<div class="container">
+<div  id="printPreOrder">
+
+   <div class="row" ng-repeat="itemGroup in itemPreOrderEdit.listPreOrderDetail">
+   
+		<div class="row pad-top-botm ">
+			 <div class="col-lg-6 col-md-6 col-sm-6"  style="margin: 20px;">
+			 	<strong>Gu&iacute;a de entrega Asociaci&oacute;n Libros Para Todos - {{itemPreOrderEdit.id}}</strong><br/>
+			 	<strong>Donaci&oacute;n realizada gracias a {{itemPreOrderEdit.customerName}}</strong><br/>
+			 	<strong>Junta de educaci&oacute;n del Centro Educativo: {{itemGroup.school.nameSchool}}- {{itemGroup.school.codMep}}</strong><br/>
+	            <h5>{{itemGroup.school.province}}-{{itemGroup.school.canton}}-{{itemGroup.school.distric}}-{{itemGroup.school.poblado}}-{{itemGroup.school.dirRegional}}-{{itemGroup.school.circuito}}  </h5>
+			</div>
+		</div>
+   
+      <div class="col-lg-12 col-md-12 col-sm-12">
+         <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+               <thead>
+                  <tr>
+                     <th>No.</th>
+                     <th>Item</th>
+                     <th>Desc</th>
+                     <th>Cantidad</th>
+                     <th ng-if="showAddItem">&nbsp;</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr  ng-repeat="itemDetail in itemGroup.preOrderProductDetails | orderBy:'defaultCode'">
+                     <td>{{$index + 1}}</td>
+                     <td>{{itemDetail.defaultCode}}</td>
+                     <td>{{itemDetail.nameProduct}}</td>
+                     <td>{{itemDetail.quantity}}</td>
+                     <td ng-if="showAddItem">&nbsp;</td>
+                  </tr>
+                  <tr  ng-repeat="itemCustom in addCustomList | filter:{ idschool: itemGroup.school.idSchool }">
+                     <td>{{itemCustom.number}}</td>
+                     <td>{{itemCustom.defaultCode}}</td>
+                     <td>{{itemCustom.name}}</td>
+                     <td>{{itemCustom.quantity}}</td>
+                     <td ng-if="showAddItem">&nbsp;</td>
+                  </tr>
+                  <tr ng-if="showAddItem">
+                  	 <td><input ng-model="itemAdd.number" type="text" class="form-control"></td>	
+                     <td><input ng-model="itemAdd.defaultCode" type="text" class="form-control"></td>
+                     <td><input ng-model="itemAdd.name" type="text" class="form-control"></td>
+                     <td><input ng-model="itemAdd.quantity" type="text" class="form-control"></td>
+                     <td><button type="button" class="btn btn-secondary" ng-click="addItem(itemAdd,itemGroup.school.idSchool)"><i class="glyphicon glyphicon-plus"></i></button></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      
+	  <label for="comment">Comentarios:</label>
+	  <p id="comment">{{returnComment(itemPreOrderEdit,itemGroup.school.idSchool)}}</p>
+
+
+	<footer style="margin: 20px;">
+	  <p>(*) Para las donaciones se requiere recibido conforme, sello de direcci&oacute;n y verificaci&oacute;n de c&eacute;dula.</p>
+	  <p>(**) NO se aceptan cambios de libros o paquetes en mal estado o con sticker.</p>
+	  <br/><br/>
+	  <p>Nombre completo recibido:_____________________________ &nbsp;&nbsp;Firma:______________ &nbsp;&nbsp;Sello de la Junta:______________ &nbsp;&nbsp;Fecha:________________ </p><br/>
+	</footer>
+   </div>
+  </div>
+   <!-- div class="row pad-top-botm">
+      	<div class="col-lg-12 col-md-12 col-sm-12">
+	         <hr />
+	         <button type="button" class="btn btn-primary btn-lg"  ng-click="printIt()">Imprimir</button>
+	         &nbsp;&nbsp;&nbsp;
+      	</div> 
+      </div> -->
+   </div>
+<style>
+   /* =============================================================
+   GENERAL STYLES
+   ============================================================ */
+   body {
+   font-family: 'Open Sans', sans-serif;
+   font-size:16px;
+   line-height:30px;
+   }
+   .pad-top-botm {
+   padding-bottom:40px;
+   padding-top:60px;
+   }
+   h4 {
+   text-transform:uppercase;
+   }
+   /* =============================================================
+   PAGE STYLES
+   ============================================================ */
+   .contact-info span {
+   font-size:14px;
+   padding:0px 50px 0px 50px;
+   }
+   .contact-info hr {
+   margin-top: 0px;
+   margin-bottom: 0px;
+   }
+   .client-info {
+   font-size:15px;
+   }
+   .ttl-amts {
+   text-align:right;
+   padding-right:50px;
+   }
+	@media print {
+	    footer {page-break-after: always;}
+	}
+</style>

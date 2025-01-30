@@ -1,0 +1,170 @@
+<blockquote>
+   <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+         <span class="h2">Productos</span>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+         <div class="input-group">
+            <div class="input-group-btn">
+               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+               Ver {{pag_size}} <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu">
+                  <li>
+                     <link-to pag_size="5" pag_number="1">5 l&iacute;neas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="8" pag_number="1">8 l&iacute;neas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="13" pag_number="1">13 l&iacute;neas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="21" pag_number="1">21 l&iacute;neas</link-to>
+                  </li>
+                  <li>
+                     <link-to pag_size="34" pag_number="1">34 l&iacute;neas</link-to>
+                  </li>
+               </ul>
+               <link-to pag_number="1" data-toggle="enter" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></link-to>
+            </div>
+            <input type="text" ng-model="query" class="form-control" placeholder="Buscar" key-enter />
+            <div class="input-group-btn">
+               <link-to query="" pag_number="1" ng-disabled="!query" class="btn btn-default">Limpiar</link-to>
+            </div>
+         </div>
+      </div>
+   </div>
+</blockquote>
+<ol class="breadcrumb">
+   <li><a href="#/"><i class="glyphicon glyphicon-home"></i></a></li>
+   <li><a href="#/{{parameters.routeBase}}/">Productos</a></li>
+   <li ng-show="list_parms[0]"><a href="#/{{parameters.routeBase}}/{{list_parms[0]}}">{{list_parms[0]}}</a></li>
+   <li class="active">{{pag_number}}</li>
+</ol>
+<div class="table-responsive">
+   <table class="table table-striped table-condensed table-hover">
+      <thead>
+         <tr>
+            <th colspan="2" sort-by="defaultCode">Producto</th>
+            <th sort-by="pack">Item Venta</th>
+            <th sort-by="gradePack">Paquete b&aacute;sico</th>
+            <th sort-by="grade">Grado</th>
+            <th sort-by="edition">Edici&oacute;n</th>
+            <th sort-by="sampleCode">Cod.Muestra</th>
+            <th sort-by="qtyAvaible">Disponible</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+         </tr>
+         <tr ng-controller="ProductCreateCtrl" ng-form="form">
+            <td colspan="2">
+               <input ng-click type="text"  ng-model="itemProductEdit.defaultCodeT" class="form-control" name="defaultCode" input-typeahead="itemProductEdit.defaultCode" input-typeahead-data="parameters.getProductErp()" input-typeahead-text="name" input-typeahead-value="default_code" key-enter/>
+            </td>
+            <!-- <td colspan="2">
+               <select ng-model="itemProductEdit.defaultCode" ng-change="changeProduct()" ng-disabled="isDisabled('defaultCode')" class="form-control" name="defaultCode" ng-options="obj.default_code as obj.name for obj in parameters.getProductErp() | orderBy:'name'" required ></select></td>
+               <td> -->
+            <td>
+               <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-disabled="isDisabled('pack')" ng-model="itemProductEdit.pack" name="pack" /><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProductEdit.pack, 'glyphicon-thumbs-down off' : !itemProductEdit.pack}"></span>
+                  </label>
+               </div>
+            </td>
+            <td>
+               <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-disabled="isDisabled('gradePack')" ng-model="itemProductEdit.gradePack" name="gradePack"/><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProductEdit.gradePack, 'glyphicon-thumbs-down off' : !itemProductEdit.gradePack}"></span>
+                  </label>
+               </div>
+            </td>
+            <td>
+               <select ng-model="itemProductEdit.grade" ng-disabled="isDisabled('grade')" class="form-control" name="grade" required>
+                  <option value="1">Primero</option>
+                  <option value="2">Segundo</option>
+                  <option value="3">Tercero</option>
+                  <option value="4">Cuarto</option>
+                  <option value="5">Quinto</option>
+                  <option value="6">Sexto</option>
+                  <option value="7">Setimo</option>
+                  <option value="8">Octavo</option>
+                  <option value="9">Noveno</option>
+                  <option value="10">Decimo</option>
+                  <option value="11">Undecimo</option>
+                  <option value="12">Duodecimo</option>
+               </select>
+            </td>
+            <td><input type="text" ng-model="itemProductEdit.edition" ng-disabled="isDisabled('edition')" class="form-control" name="edition" required/></td>
+            <td><input type="text" ng-model="itemProductEdit.sampleCode" ng-disabled="isDisabled('sampleCode')" class="form-control" name="sampleCode" required/></td>
+            <td><input type="text" ng-model="itemProductEdit.qtyAvaible" ng-disabled="isDisabled('qtyAvaible')" class="form-control" name="qtyAvaible" readonly/></td>
+            <td>
+               <button type="button" class="btn btn-xs btn-default" ng-click="save()"><i class="glyphicon glyphicon-plus" title="{{action}}"></i></button>
+            </td>
+            <td>&nbsp;</td>
+         </tr>
+      </thead>
+      <tr ng-repeat="itemProduct in items" id="itemProduct_{{itemProduct.defaultCode}}" ng-controller="ProductEditCtrl" ng-form="form" ng-dblclick="edit()">
+         <td>{{itemProduct.defaultCode}}</td>
+         <td>{{itemProduct.name}}</td>
+         <td ng-show="!enable"><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProduct.pack, 'glyphicon-thumbs-down off' : !itemProduct.pack}"></span></td>
+         <td ng-show="enable">
+            <div class="checkbox">
+               <label>
+               <input type="checkbox" ng-disabled="isDisabled('pack')" ng-model="itemProductEdit.pack" name="pack" /><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProductEdit.pack, 'glyphicon-thumbs-down off' : !itemProductEdit.pack}"></span>
+               </label>
+            </div>
+         </td>
+         <td ng-show="!enable"><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProduct.gradePack, 'glyphicon-thumbs-down off' : !itemProduct.gradePack}"></span></td>
+         <td ng-show="enable">
+            <div class="checkbox">
+               <label>
+               <input type="checkbox" ng-disabled="isDisabled('gradePack')" ng-model="itemProductEdit.gradePack" name="gradePack"/><span class="glyphicon" ng-class="{'glyphicon-thumbs-up on' : itemProductEdit.gradePack, 'glyphicon-thumbs-down off' : !itemProductEdit.gradePack}"></span>
+               </label>
+            </div>
+         </td>
+         <td ng-show="!enable">{{itemProduct.grade}}</td>
+         <td ng-show="enable">
+            <select ng-model="itemProductEdit.grade" ng-disabled="isDisabled('grade')" class="form-control" name="grade" required>
+                  <option value="1">Primero</option>
+                  <option value="2">Segundo</option>
+                  <option value="3">Tercero</option>
+                  <option value="4">Cuarto</option>
+                  <option value="5">Quinto</option>
+                  <option value="6">Sexto</option>
+                  <option value="7">Setimo</option>
+                  <option value="8">Octavo</option>
+                  <option value="9">Noveno</option>
+                  <option value="10">Decimo</option>
+                  <option value="11">Undecimo</option>
+                  <option value="12">Duodecimo</option>
+            </select>
+         </td>
+         <td ng-show="!enable">{{itemProduct.edition}}</td>
+         <td ng-show="enable"><input type="text" ng-model="itemProductEdit.edition" ng-disabled="isDisabled('edition')" class="form-control" name="edition" required/></td>
+         <td ng-show="!enable">{{itemProduct.sampleCode}}</td>
+         <td ng-show="enable"><input type="text" ng-model="itemProductEdit.sampleCode" ng-disabled="isDisabled('sampleCode')" class="form-control" name="sampleCode" required/></td>
+         <td ng-show="!enable">{{itemProduct.qtyAvaible}}</td>
+         <td ng-show="enable"><input type="text" ng-model="itemProductEdit.qtyAvaible" ng-disabled="isDisabled('qtyAvaible')" class="form-control" name="qtyAvaible" readonly/></td>
+         <td ng-show="!enable">
+            <button type="button" class="btn btn-xs btn-default" ng-click="edit()"><i class="glyphicon glyphicon-pencil"></i></button>
+         </td>
+         <td ng-show="!enable">
+            <button type="button" class="btn btn-xs btn-danger" confirm-delete="delete()"><i class="glyphicon glyphicon-remove"></i></button>
+         </td>
+         <td ng-show="enable">
+            <button type="button" class="btn btn-xs btn-primary" ng-click="save()"><i class="glyphicon glyphicon-ok" title="{{action}}"></i></button>
+         </td>
+         <td ng-show="enable">
+            <button type="button" class="btn btn-xs btn-default" ng-click="cancel()"><i class="glyphicon glyphicon-ban-circle"></i></button>
+         </td>
+      </tr>
+      </tbody>
+   </table>
+</div>
+<ul class="pager">
+   <li class="previous">
+      <link-to pag_number="{{pag_number - 1}}" ng-show="show_prev()">&larr; Anterior</link-to>
+   </li>
+   <li class="next">
+      <link-to pag_number="{{pag_number + 1}}" ng-show="show_next()">Siguiente &rarr;</link-to>
+   </li>
+</ul>

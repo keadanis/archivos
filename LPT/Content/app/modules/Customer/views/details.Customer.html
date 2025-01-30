@@ -1,0 +1,323 @@
+<!-- Clase: Customer, Ruta: clientes --> 
+<form name="form" class="form-horizontal" ng-submit="save()" autocomplete="off">
+    <fieldset>
+        <legend>{{action}} Clientes</legend>
+        
+        <!-- Panel informacion general--> 
+		<div class="panel panel-primary">
+		  <div class="panel-heading" data-toggle="collapse" data-target="#general-data"><strong>Informaci&oacute;n general</strong></div>
+		  <div class="panel-body collapse" id="general-data">
+		  
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nombreComercial.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="idNumber">Nombre Comercial</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nombreComercial" ng-disabled="isDisabled('nombreComercial')" class="form-control" name="nombreComercial" required/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.idNumber.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="idNumber">C&eacute;dula</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.idNumber" ng-disabled="isDisabled('idNumber')" ui-mask="{{idNumberMask}}"  ui-mask-placeholder ui-mask-placeholder-char="_" class="form-control" name="idNumber" required/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.customerType.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5"  for="customerType">Tipo</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<select  ng-disabled="isDisabled('customerType')" ng-model="itemCustomerEdit.customerType" name="customerType" ng-change="getMask()" class="form-control" required>
+						<option value="F">F&iacute;sico</option>
+						<option value="J">Jur&iacute;dico</option>
+						<option value="O">Otro</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.type.$invalid}" ng-hide="true">
+			   <label class="control-label col-lg-5 col-md-5 col-sm-5" for="type">Venta / Donaci&oacute;n</label>
+			   <div class="col-lg-7 col-md-7 col-sm-7">
+			      <select ng-model="itemCustomerEdit.tcustomer"  class="form-control" name="type" required>
+			         <option value="D">Donaci&oacute;n</option>
+			         <option value="V">Venta</option>
+			      </select>
+			   </div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nameCustomer.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="nameCustomer">Nombre</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nameCustomer" ng-disabled="isDisabled('nameCustomer')" class="form-control" name="nameCustomer" required/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.phone.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="phone">Tel&eacute;fono</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.phone" ng-disabled="isDisabled('phone')" class="form-control" name="phone" required placeholder="88888888"/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.email.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="email">Correo</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.email" ng-disabled="isDisabled('email')" class="form-control" name="email" required placeholder="correo@ejemplo.com"/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.categoria.$invalid}" ng-hide="itemCustomerEdit.tcustomer == 'D'">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5"  for="categoria">Categoria</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<select  ng-disabled="isDisabled('categoria')" ng-model="itemCustomerEdit.categoria" name="categoria" class="form-control" required>
+						<option value="P">Punto de venta</option>
+						<option value="L">Libreria</option>
+						<option value="A">Agente</option>
+						<option value="V">Venta Directa</option>
+						<option value="T">Tienda Online</option>
+					</select>
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.customerType == 'J'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nomRepre.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="nomRepre">Nombre Representante</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nomRepre" ng-disabled="isDisabled('nomRepre')" class="form-control" name="nomRepre" />
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.customerType == 'J'"  class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.cedRepre.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="cedRepre">Cedula Representante</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.cedRepre" ng-disabled="isDisabled('cedRepre')" class="form-control" name="cedRepre" />
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.customerType == 'J'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.direccionEmpresa.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="direccionEmpresa">Direccion Empresa</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.direccionEmpresa" ng-disabled="isDisabled('direccionEmpresa')" class="form-control" name="direccionEmpresa" />
+				</div>
+			</div>
+		
+		  </div>
+		</div>
+
+        <!-- Panel informacion Gestion--> 
+		<div class="panel panel-info">
+		  <div class="panel-heading" data-toggle="collapse" data-target="#gestion-data"><strong>Contacto de Gesti&oacute;n</strong></div>
+		  <div class="panel-body collapse" id="gestion-data">
+			<div  class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nombreGestion.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="cedRepre">Nombre Gesti&oacute;n</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nombreGestion" ng-disabled="isDisabled('nombreGestion')" class="form-control" name="nombreGestion" />
+				</div>
+			</div>
+			<div  class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.TelGestion.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="telGestion">Tel Gesti&oacute;n</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.telGestion" ng-disabled="isDisabled('telGestion')" class="form-control" name="telGestion" />
+				</div>
+			</div>
+			<div  class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.cargoGestion.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="cargoGestion">Cargo Gesti&oacute;n</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.cargoGestion" ng-disabled="isDisabled('cargoGestion')" class="form-control" name="cargoGestion" />
+				</div>
+			</div>
+		  </div>
+		</div>
+		
+        <!-- Panel informacion Entrega--> 
+		<div class="panel panel-success">
+		  <div class="panel-heading" data-toggle="collapse" data-target="#entrega-data"><strong>Entrega</strong></div>
+		  <div class="panel-body collapse" id="entrega-data">
+		  
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.entrega.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="entrega">Lugar de Entrega</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<select ng-disabled="isDisabled('entrega')" ng-model="itemCustomerEdit.entrega" name="entrega" class="form-control" required>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="L">LPT</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="E">Empresa</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="B">Bodega</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="D">Despacho nocturno</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="A">Agente de Ventas LPT</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.address.$invalid}" ng-if="itemCustomerEdit.entrega == 'E'">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="address">Direcci&oacute;n</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<textarea ng-disabled="isDisabled('address')" ng-model="itemCustomerEdit.address" name="address" class="form-control" rows="2" required></textarea>
+				</div>
+			</div>
+			<div ng-show="(itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'E') || itemCustomerEdit.indAcom == 'Y'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nomEnt.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="nomEnt">Nombre Ent</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nomEnt" ng-disabled="isDisabled('nomEnt')" class="form-control" name="nomEnt" placeholder="Nombre Apellidos"/>
+				</div>
+			</div>
+			<div ng-show="(itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'E') || itemCustomerEdit.indAcom == 'Y'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.emailEnt.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="emailEnt">Correo Ent</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.emailEnt" ng-disabled="isDisabled('emailEnt')" class="form-control" name="emailEnt" placeholder="correo@ejemplo.com"/>
+				</div>
+			</div>
+			<div ng-show="(itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'E') || itemCustomerEdit.indAcom == 'Y'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.telEnt.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="telEnt">Tel Ent</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.telEnt" ng-disabled="isDisabled('telEnt')" class="form-control" name="telEnt" placeholder="88888888"/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.observacions.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="observacions">Observaciones</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<textarea ng-disabled="isDisabled('observacions')" ng-model="itemCustomerEdit.observacions" name="observacions" class="form-control" rows="2"></textarea>
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'L'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.indAcom.$invalid}">
+		      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="indAcom">Acompa&ntilde;a</label>
+		      <div class="col-lg-7 col-md-7 col-sm-7">
+		        <div class="checkbox">
+		          <label>
+					<input type="checkbox"  ng-model="itemCustomerEdit.indAcom" name="indAcom" ng-true-value="Y" ng-false-value="N"/>
+		          </label>
+		        </div>
+		      </div>
+		    </div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'L'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.indAct.$invalid}">
+		      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="indAct">Actividad</label>
+		      <div class="col-lg-7 col-md-7 col-sm-7">
+		        <div class="checkbox">
+		          <label>
+					<input type="checkbox"  ng-model="itemCustomerEdit.indAct" name="indAct" ng-true-value="Y" ng-false-value="N"/>
+		          </label>
+		        </div>
+		      </div>
+		    </div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.indDoc.$invalid}">
+		      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="indDoc">Documentos</label>
+		      <div class="col-lg-7 col-md-7 col-sm-7">
+		        <div class="checkbox">
+		          <label>
+					<input type="checkbox"  ng-model="itemCustomerEdit.indDoc" name="indDoc" ng-true-value="Y" ng-false-value="N"/>
+		          </label>
+		        </div>
+		      </div>
+		    </div>
+		    <!-- <div ng-show="itemCustomerEdit.tcustomer == 'V'"  class="form-group col-lg-6 col-md-6 col-sm-6">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="espDesc">Esp. Descuento</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<textarea ng-disabled="isDisabled('espDesc')" ng-model="itemCustomerEdit.espDesc" name="espDesc" class="form-control" rows="2"></textarea>
+				</div>
+			</div> -->
+			<div ng-show="itemCustomerEdit.tcustomer == 'D' && itemCustomerEdit.entrega == 'E'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.numAdc.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="numAdc">Adicionales</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.numAdc" ng-disabled="isDisabled('numAdc')" class="form-control" name="numAdc" />
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.lPTDona.$invalid}">
+		      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="lPTDona">LPT Dona</label>
+		      <div class="col-lg-7 col-md-7 col-sm-7">
+		        <div class="checkbox">
+		          <label>
+					<input type="checkbox"  ng-model="itemCustomerEdit.lPTDona" name="lPTDona" ng-true-value="Y" ng-false-value="N"/>
+		          </label>
+		        </div>
+		      </div>
+		    </div>
+		  
+		  </div>
+		</div>
+		
+        <!-- Panel informacion Facturacion--> 
+		<div class="panel panel-warning">
+		  <div class="panel-heading" data-toggle="collapse" data-target="#fac-data"><strong>Facturaci&oacute;n</strong></div>
+		  <div class="panel-body collapse" id="fac-data">
+		  
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.plazoPago.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="plazoPago">Plazo pago</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<select ng-disabled="isDisabled('entrega')" ng-model="itemCustomerEdit.plazoPago" name="plazoPago" class="form-control" required>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="15">15 d&iacute;as (menos a 500 000 colones) </option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="30">30 d&iacute;as (entre 500001 y 3500000 colones) </option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="45">45 d&iacute;as (entre 3001000 y 10000000 colones)  </option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'D'" value="60">60 d&iacute;as (mayor a 10000001 colones)  </option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="8">8</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="15">15 d&iacute;as</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="30">30 d&iacute;as</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="60">60 d&iacute;as</option>
+						<option ng-show="itemCustomerEdit.tcustomer == 'V'" value="90">90 d&iacute;as</option>
+						<option value="-1">Excepci&oacute;n</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.nomFac.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="nomFac">Nombre fact</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.nomFac" ng-disabled="isDisabled('nomFac')" class="form-control" name="nomFac" placeholder="Nombre Apellidos"/>
+				</div>
+			</div>
+			<div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.emailFac.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="emailFac">Correo fact</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.emailFac" ng-disabled="isDisabled('emailFac')" class="form-control" name="emailFac" placeholder="correo@ejemplo.com"/>
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.telFac.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="telFac">Tel fact</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input type="text" ng-model="itemCustomerEdit.telFac" ng-disabled="isDisabled('telFac')" class="form-control" name="telFac" placeholder="88888888"/>
+				</div>
+			</div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.indOc.$invalid}">
+		      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="indOc">Orden de compra</label>
+		      <div class="col-lg-7 col-md-7 col-sm-7">
+		        <div class="checkbox">
+		          <label>
+					<input type="checkbox"  ng-model="itemCustomerEdit.indOc" name="indOc" ng-true-value="Y" ng-false-value="N"/>
+		          </label>
+		        </div>
+		      </div>
+		    </div>
+			<div ng-show="itemCustomerEdit.tcustomer == 'D'" class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.creditoAprobado.$invalid}">
+				<label class="control-label col-lg-5 col-md-5 col-sm-5" for="creditoAprobado">Cr&eacute;dito Aprobado</label>
+				<div class="col-lg-7 col-md-7 col-sm-7">
+					<input ng-show="currentUser.role.description != 'Administrador'" type="number" ng-model="itemCustomerEdit.creditoAprobado" ng-disabled="isDisabled('CreditoAprobado')" class="form-control" name="creditoAprobado" readonly/>
+					<input ng-show="currentUser.role.description == 'Administrador'"type="number" ng-model="itemCustomerEdit.creditoAprobado" ng-disabled="isDisabled('CreditoAprobado')" class="form-control" name="creditoAprobado" />
+				</div>
+			</div>
+		  </div>
+		</div>
+		
+		<!--  <div class="form-group col-lg-6 col-md-6 col-sm-6" ng-class="{'has-error': form.indSample.$invalid}" ng-hide="itemCustomerEdit.tcustomer == 'D'">
+	      <label class="control-label col-lg-5 col-md-5 col-sm-5" for="indSample">Aplica Muestra</label>
+	      <div class="col-lg-7 col-md-7 col-sm-7">
+	        <div class="checkbox">
+	          <label>
+				<input type="checkbox"  ng-model="itemCustomerEdit.indSample" name="indSample" ng-true-value="Y" ng-false-value="N"/>
+	          </label>
+	        </div>
+	      </div>
+	    </div>-->
+
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Aceptar</button>
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    </div>
+    
+    <br/>
+    <div class="table-responsive">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+				<th>Escuela</th>
+<!-- 				<th>&nbsp;</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="itemSchool in itemCustomerEdit.schoolList">
+				<td ng-show="!enable">{{itemSchool.displayName}}</td>
+<!--                 <td ng-show="!enable">
+                    <button type="button" class="btn btn-xs btn-danger" confirm-delete="removeSchool(itemSchool)"><i class="glyphicon glyphicon-remove"></i></button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+    
+    
+</form>
+
